@@ -1,46 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+import 'package:rover_watch/getIT.dart';
+import 'package:rover_watch/screens/gallery.dart';
 import 'package:rover_watch/screens/loginScreen.dart';
+import 'package:rover_watch/state/galleryVM.dart';
+import 'package:rover_watch/state/userVM.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  await Firebase.initializeApp();
+  await getItSetup();
+  final getIt = GetIt.instance;
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserVM>(create: (context) => getIt<UserVM>()),
+        ChangeNotifierProvider<GalleryVM>(create: (context) => getIt<GalleryVM>()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  // Create the initialization Future outside of `build`:
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FutureBuilder(
-        // Initialize FlutterFire:
-        future: _initialization,
-        builder: (context, snapshot) {
-
-          // Check for errors
-          if (snapshot.hasError) {
-            return SomethingWentWrong();
-          }
-          // Once complete, show your application
-          if (snapshot.connectionState == ConnectionState.done) {
-            final FirebaseAuth auth = FirebaseAuth.instance;
-            auth.authStateChanges()
-                .listen((User user) {
-              if (user == null) {
-                print('User is currently signed out!');
-              } else {
-                print('User is signed in!');
-              }
-            });
-            return LoginScreen();
-          }
-
-          // Otherwise, show something whilst waiting for initialization to complete
-          return Loading();
-        },
-      ),
+      debugShowCheckedModeBanner: false,
+      home: Consumer<UserVM>(builder: (context, userVM, child) {
+        return userVM.user == null?  LoginScreen() : GalleryScreen();
+      },),
     );
   }
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "710873691387",
+    "project_id": "nasarover-1e92a",
+    "storage_bucket": "nasarover-1e92a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710873691387:android:911a437e2d94dd9bff2c5e",
+        "android_client_info": {
+          "package_name": "com.droidim.rover_watch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710873691387-um9t1hp3iev6c2123moj1cq2b5741i0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.droidim.rover_watch",
+            "certificate_hash": "57d6a9c0fa2b5aeefa34c811611a38b9e8207585"
+          }
+        },
+        {
+          "client_id": "710873691387-mk7cnada5maavm1k0q1im488fuj2l8dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOFan_MfZ0oh2LmfLolof3ikXW7CKBm_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710873691387-mk7cnada5maavm1k0q1im488fuj2l8dp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

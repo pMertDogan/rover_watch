@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rover_watch/data/base/authBase.dart';
-import 'package:rover_watch/data/models/AppUser.dart';
+import 'package:rover_watch/data/models/appUser.dart';
 
 class UserVM extends ChangeNotifier{
 

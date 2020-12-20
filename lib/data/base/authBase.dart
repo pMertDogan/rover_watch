@@ -1,6 +1,6 @@
 
 
-import 'package:rover_watch/data/models/AppUser.dart';
+import 'package:rover_watch/data/models/appUser.dart';
 
 abstract class AuthBase{
   AppUser currentUser();

@@ -3,10 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:rover_watch/getIT.dart';
-import 'package:rover_watch/screens/gallery.dart';
 import 'package:rover_watch/screens/loginScreen.dart';
 import 'package:rover_watch/state/galleryVM.dart';
 import 'package:rover_watch/state/userVM.dart';
+
+import 'screens/gallery/gallery.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

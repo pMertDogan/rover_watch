@@ -14,7 +14,6 @@ class RoverPhotoGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<GalleryVM>(
       builder: (context, galleryVM, child) {
-        print("galeri fotoğraflar rebuild edildi");
         return Expanded(
           child: FutureBuilder(
             future: galleryVM.getPhotos(),
@@ -58,7 +57,7 @@ class RoverPhotoGallery extends StatelessWidget {
                     crossAxisSpacing: 4.0,
                   );
                 } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString().replaceAll("Exception:", ""));
+                  return Center(child: Text(snapshot.error.toString().replaceAll("Exception:", "")));
                 } else {
                   return Text("please wait");
                 }

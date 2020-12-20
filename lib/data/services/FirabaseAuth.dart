@@ -12,6 +12,10 @@ class FirebaseAuthService implements AuthBase{
   @override
   Future<AppUser> singInWithFacebook() async {
 
+    try {
+
+
+
     // Trigger the sign-in flow
     final AccessToken result = await FacebookAuth.instance.login();
     // Create a credential from the access token
@@ -20,6 +24,10 @@ class FirebaseAuthService implements AuthBase{
     // Once signed in, return the UserCredential
     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
     return toAppUser(userCredential.user);
+    } on FacebookAuthException catch (e) {
+      print(e.message);
+      print(e.errorCode);
+    }
   }
 
   @override

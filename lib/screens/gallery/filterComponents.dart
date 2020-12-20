@@ -35,19 +35,24 @@ class FilterComponents extends StatelessWidget {
                 );
               }).toList(),
             ),
-            Container(
-              width: 100,
-              height: 50,
-              child: TextFormField(
-                initialValue: galleryVM.solParameter.toString(),
-                onFieldSubmitted: (text) => galleryVM.solParameter = int.parse(text),
-                decoration: InputDecoration(hintText: "SOL", counterText: ""),
-                keyboardType: TextInputType.number,
-                maxLength: 3,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                ],
-              ),
+            Row(
+              children: [
+                Text("SOL: "),
+                Container(
+                  width: 50,
+                  height: 30,
+                  child: TextFormField(
+                    initialValue: galleryVM.solParameter.toString(),
+                    onFieldSubmitted: (text) => galleryVM.solParameter = int.parse(text),
+                    decoration: InputDecoration(hintText: "SOL", counterText: ""),
+                    keyboardType: TextInputType.number,
+                    maxLength: 3,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    ],
+                  ),
+                ),
+              ],
             )
           ],
         );

@@ -77,7 +77,7 @@ class GalleryVM extends ChangeNotifier {
     selectedRoverIndex = index;
     selectedRoverAPIName = roverNames[index];
     camOptions = index == 0 ? curiosityCameras : opportunitySpiritCameras;
-    getPhotos();
+    //getPhotos();
   }
 
   Future<RoverPhotos> getPhotos() async {
@@ -88,7 +88,6 @@ class GalleryVM extends ChangeNotifier {
             ? ""
             : "&camera=" + selectedCamAPIName);
     print(url);
-    //&sol=999
 
     var response = await http.get(url);
     if (response.statusCode == 200) {

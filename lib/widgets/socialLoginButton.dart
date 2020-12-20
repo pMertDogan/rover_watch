@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class SocialLoginButton extends StatelessWidget {
   const SocialLoginButton(
       {Key key,
-        @required this.onPressed,
-        @required this.buttonText,
-        @required this.icon,
-        @required this.logoColor})
+      @required this.onPressed,
+      @required this.buttonText,
+      @required this.icon,
+      @required this.logoColor,
+      this.imagePath})
       : super(key: key);
 
   final VoidCallback onPressed;
   final String buttonText;
+  final String imagePath;
   final IconData icon;
   final MaterialColor logoColor;
   final textColor = const Color.fromARGB(255, 109, 110, 110);
@@ -18,6 +20,7 @@ class SocialLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(imagePath);
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -29,7 +32,7 @@ class SocialLoginButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            imagePath != null ? Container(width: 25,height: 25 ,child: Image.asset(imagePath)):Icon(
               icon,
               color: logoColor,
             ),

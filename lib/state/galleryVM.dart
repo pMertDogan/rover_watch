@@ -95,7 +95,7 @@ class GalleryVM extends ChangeNotifier {
       //print(jsonResponse);
 
       if ((jsonResponse["photos"] as List).length == 0) {
-        throw Exception("Malesef filtreye uygun bir fotoğraf elimizde yok :/");
+        throw Exception("Girdiğiniz kriterlere uygun bir sonuç bulunamadı :/ ");
       }
       //print(jsonResponse["photos"]);
       return RoverPhotos.fromJson(jsonResponse);

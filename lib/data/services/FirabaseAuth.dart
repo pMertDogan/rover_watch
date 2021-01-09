@@ -14,8 +14,6 @@ class FirebaseAuthService implements AuthBase{
 
     try {
 
-
-
     // Trigger the sign-in flow
     final AccessToken result = await FacebookAuth.instance.login();
     // Create a credential from the access token

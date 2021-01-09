@@ -6,5 +6,4 @@ abstract class AuthBase{
   AppUser currentUser();
   Future<AppUser> singInWithFacebook();
   Future<void> singOut();
-
 }

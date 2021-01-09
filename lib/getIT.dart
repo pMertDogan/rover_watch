@@ -12,5 +12,4 @@ Future<void> getItSetup() {
   //Create UserVievModel using selected AuthService
   getIt.registerSingleton<UserVM>(UserVM(getIt<AuthBase>()));
   getIt.registerSingleton<GalleryVM>(GalleryVM());
-
 }

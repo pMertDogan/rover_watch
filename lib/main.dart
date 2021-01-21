@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
-import 'package:rover_watch/getIT.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rover_watch/data/base/authBase.dart';
+import 'package:rover_watch/data/services/FirabaseAuth.dart';
 import 'package:rover_watch/screens/loginScreen.dart';
-import 'package:rover_watch/state/galleryVM.dart';
-import 'package:rover_watch/state/userVM.dart';
+import 'package:rover_watch/state/authState/auth_state_bloc.dart';
 
 import 'screens/gallery/gallery.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await getItSetup();
-  final getIt = GetIt.instance;
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<UserVM>(create: (context) => getIt<UserVM>()),
-        ChangeNotifierProvider<GalleryVM>(create: (context) => getIt<GalleryVM>()),
-      ],
-      child: MyApp(),
+    RepositoryProvider<AuthBase>(
+      create: (context) => FirebaseAuthService(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (context) =>
+                  AuthStateBloc(RepositoryProvider.of<AuthBase>(context))
+                    //Git mevcut kullanıcı var mı yokmu öğren
+                    ..add(InitGetUser()))
+        ],
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -29,15 +32,23 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Consumer<UserVM>(builder: (context, userVM, child) {
-        return userVM.user == null?  LoginScreen() : GalleryScreen();
-      },),
+    return BlocBuilder<AuthStateBloc, AuthStateState>(
+      builder: (context, AuthStateState state) {
+        print(state);
+        return MaterialApp(
+          home: state is AuthStateInitial
+              ? Loading()
+              : state is AuthStateLoading
+                  ? Loading()
+                  : state is AuthStateError
+                      ? SomethingWentWrong()
+                      : state is AuthStateLogged
+                          ? GalleryScreen()
+                          : LoginScreen());
+      },
     );
   }
 }
-
 
 class Loading extends StatelessWidget {
   @override
@@ -66,4 +77,3 @@ class SomethingWentWrong extends StatelessWidget {
     );
   }
 }
-

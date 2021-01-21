@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:rover_watch/config.dart';
 
-part 'rover_state.dart';
+class RoverCubit extends Cubit<RoverTypes> {
+  RoverCubit() : super(RoverTypes.Curiosity);
 
-class RoverCubit extends Cubit<RoverState> {
-  RoverCubit() : super(RoverInitial());
+  void selectRover(RoverTypes selected) => emit(selected);
+
 }

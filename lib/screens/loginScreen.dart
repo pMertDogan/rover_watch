@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:provider/provider.dart';
+import 'package:rover_watch/state/authState/auth_state_bloc.dart';
+
 import 'package:rover_watch/state/userVM.dart';
 import 'package:rover_watch/widgets/socialLoginButton.dart';
 
@@ -14,7 +16,9 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
               LoginLogo(),
               FacebookLogin(),
               GoogleLogin(),
@@ -109,17 +113,22 @@ class FacebookLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserVM>(
-        builder: (context, userVM, child) => SocialLoginButton(
-              onPressed: () {
-                print("Facebook");
-                userVM.singInWithFacebook();
-              },
-              logoColor: Colors.blue,
-              icon: FontAwesome.facebook,
-              buttonText: "Continue with Facebook",
-              imagePath: "assets/facebook.png",
-            ));
+    return BlocBuilder<AuthStateBloc, AuthStateState>(
+      builder: (context, AuthStateState state) {
+        return SocialLoginButton(
+          onPressed: () {
+            print("Facebook butonuna tıklantı");
+            context.read<AuthStateBloc>().add(LoginWithFacebook());
+            // userVM.singInWithFacebook();
+            //Facebook ile basıldığı eventini gönder
+          },
+          logoColor: Colors.blue,
+          icon: FontAwesome.facebook,
+          buttonText: "Continue with Facebook",
+          imagePath: "assets/facebook.png",
+        );
+      },
+    );
   }
 }
 

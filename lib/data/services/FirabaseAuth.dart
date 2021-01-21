@@ -13,7 +13,6 @@ class FirebaseAuthService implements AuthBase{
   Future<AppUser> singInWithFacebook() async {
 
     try {
-
     // Trigger the sign-in flow
     final AccessToken result = await FacebookAuth.instance.login();
     // Create a credential from the access token

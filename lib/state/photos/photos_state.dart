@@ -8,3 +8,17 @@ abstract class PhotosState extends Equatable {
 }
 
 class PhotosInitial extends PhotosState {}
+class PhotosLoading extends PhotosState {}
+class PhotosError extends PhotosState{
+  final String mesaj;
+
+  PhotosError(this.mesaj);
+}
+
+
+class PhotosLoaded extends PhotosState{
+  final RoverPhotos roverPhotos;
+  
+
+  PhotosLoaded(this.roverPhotos);
+}

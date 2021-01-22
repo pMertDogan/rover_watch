@@ -11,7 +11,6 @@ import 'screens/gallery/gallery.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(
     RepositoryProvider<AuthBase>(
       create: (context) => FirebaseAuthService(),

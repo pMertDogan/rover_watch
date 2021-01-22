@@ -1,9 +1,10 @@
-enum RoverTypes {Curiosity, Opportunity , Spirit}
+enum RoverTypes { Curiosity, Opportunity, Spirit }
 
+const String endPoint = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 const String fixQuery =
-      "/photos?api_key=34GEounDGYVWATdri13FpLtCifWfylswMEWoFYI6&page=1";
-class RoverAppConfig {
+    "/photos?api_key=34GEounDGYVWATdri13FpLtCifWfylswMEWoFYI6&page=1";
 
+class RoverAppConfig {
   static const List<String> curiosityCameras = [
     "all",
     "fhaz",
@@ -22,6 +23,4 @@ class RoverAppConfig {
     "pancam",
     "minites"
   ];
-
-
 }

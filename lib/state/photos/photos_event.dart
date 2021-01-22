@@ -7,7 +7,25 @@ abstract class PhotosEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetPhotos {
+class GetPhotos extends PhotosEvent {
+
+  final String selectedCam;
+  final String roverName;
+  final String sol;
   
+  GetPhotos(this.selectedCam, this.roverName, this.sol);
+
   
+  GetPhotos copyWith({
+    String selectedCam,
+    String roverName,
+    String sol,
+  }) {
+    return GetPhotos(
+      selectedCam ?? this.selectedCam,
+      roverName ?? this.roverName,
+      sol ?? this.sol,
+    );
+  }
 }
+
